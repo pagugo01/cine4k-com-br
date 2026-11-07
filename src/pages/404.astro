@@ -1,0 +1,46 @@
+---
+// src/pages/404.astro
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE_CONFIG } from '../config/site';
+---
+
+<Layout 
+  title={`Página Não Encontrada (404) — ${SITE_CONFIG.name}`}
+  description="Página não encontrada no catálogo Cine 4K."
+>
+  <Header />
+
+  <main class="min-h-[60vh] flex flex-col items-center justify-center text-center px-4 py-16">
+    <div class="w-20 h-20 rounded-3xl bg-cyan-500/10 border border-cyan-400/30 flex items-center justify-center text-cyan-400 mb-6 shadow-xl shadow-cyan-500/10">
+      <span class="text-3xl font-black">404</span>
+    </div>
+
+    <h1 class="text-2xl sm:text-3xl font-black text-white mb-2">
+      Título ou Página Não Encontrada
+    </h1>
+    <p class="text-sm text-slate-400 max-w-md mb-8">
+      O link que você tentou acessar não existe ou foi movido para uma nova categoria no nosso catálogo 4K.
+    </p>
+
+    <div class="flex flex-wrap items-center justify-center gap-3">
+      <a 
+        href="/"
+        class="px-6 py-3 rounded-full bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-black text-sm tracking-wide shadow-lg shadow-cyan-400/20 active:scale-95 transition-all"
+      >
+        Voltar ao Catálogo Principal
+      </a>
+      <a 
+        href={`https://wa.me/${SITE_CONFIG.whatsapp.number}?text=${encodeURIComponent('Olá! Estava procurando um conteúdo no Cine 4K mas não encontrei.')}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="px-6 py-3 rounded-full bg-slate-800 hover:bg-slate-700 text-white font-bold text-sm border border-slate-700 transition-colors"
+      >
+        Pedir Título no WhatsApp
+      </a>
+    </div>
+  </main>
+
+  <Footer />
+</Layout>

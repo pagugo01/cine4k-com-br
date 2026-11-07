@@ -1,0 +1,83 @@
+---
+// src/components/Header.astro
+import { SITE_CONFIG } from '../config/site';
+---
+
+<header class="sticky top-0 z-40 w-full bg-[#040711]/90 backdrop-blur-md border-b border-white/5 px-4 py-3 sm:px-6">
+  <div class="max-w-7xl mx-auto flex items-center justify-between gap-3">
+    
+    <!-- Logo Cine 4K -->
+    <a href="/" class="flex items-center gap-2 group flex-shrink-0" aria-label="Cine 4K Início">
+      <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-500 to-blue-600 p-0.5 shadow-lg shadow-cyan-500/20 group-hover:scale-105 transition-transform">
+        <div class="w-full h-full bg-[#040711] rounded-[10px] flex items-center justify-center">
+          <span class="text-cyan-400 font-black text-sm tracking-tighter">4K</span>
+        </div>
+      </div>
+      <div class="flex flex-col">
+        <div class="flex items-center gap-1.5">
+          <span class="text-xl font-black tracking-tight text-white group-hover:text-cyan-400 transition-colors">CINE<span class="text-cyan-400">4K</span></span>
+          <span class="px-1.5 py-0.5 text-[9px] font-extrabold uppercase tracking-wider bg-cyan-500/10 text-cyan-400 border border-cyan-500/30 rounded">VIP</span>
+        </div>
+        <span class="text-[10px] text-slate-400 -mt-1 hidden sm:block">Catálogo Oficial</span>
+      </div>
+    </a>
+
+    <!-- Menu Central (Desktop) -->
+    <nav class="hidden md:flex items-center gap-1 text-sm font-medium text-slate-300">
+      <a href="#lancamentos" class="px-3 py-1.5 rounded-lg hover:text-white hover:bg-white/5 transition-colors">Lançamentos</a>
+      <a href="#filmes" class="px-3 py-1.5 rounded-lg hover:text-white hover:bg-white/5 transition-colors">Filmes</a>
+      <a href="#series" class="px-3 py-1.5 rounded-lg hover:text-white hover:bg-white/5 transition-colors">Séries</a>
+      <a href="#canais" class="px-3 py-1.5 rounded-lg hover:text-white hover:bg-white/5 transition-colors">Canais Ao Vivo</a>
+      <a href="#planos" class="px-3 py-1.5 rounded-lg hover:text-cyan-400 hover:bg-cyan-500/10 transition-colors font-semibold text-cyan-400">Planos</a>
+    </nav>
+
+    <!-- Botões da Direita (Conforme screenshot Virtua) -->
+    <div class="flex items-center gap-2 sm:gap-2.5">
+      <!-- Botão Planos (Pill) -->
+      <a 
+        href="#planos" 
+        class="hidden sm:inline-flex items-center justify-center px-4 py-1.5 text-xs font-bold rounded-full bg-[#0d162a] text-slate-200 border border-slate-700/60 hover:border-cyan-500/50 hover:text-white transition-all shadow-sm"
+      >
+        Planos
+      </a>
+
+      <!-- Botão Revender (Pill com borda verde/ciano) -->
+      <a 
+        href={`https://wa.me/${SITE_CONFIG.whatsapp.number}?text=${encodeURIComponent('Olá! Gostaria de saber mais sobre como revender o painel Cine 4K!')}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center justify-center px-3.5 py-1.5 text-xs font-bold rounded-full bg-[#0c1f1f] text-emerald-400 border border-emerald-500/40 hover:bg-emerald-500/20 transition-all shadow-sm"
+      >
+        Revender
+      </a>
+
+      <!-- Botão Busca (Lupa) -->
+      <button 
+        id="openSearchBtn" 
+        type="button" 
+        aria-label="Buscar títulos no catálogo"
+        class="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-[#0d162a] border border-slate-700/60 flex items-center justify-center text-slate-300 hover:text-cyan-400 hover:border-cyan-500/50 transition-all cursor-pointer"
+      >
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <circle cx="11" cy="11" r="8" stroke-width="2" />
+          <path d="M21 21l-4.35-4.35" stroke-width="2" stroke-linecap="round" />
+        </svg>
+      </button>
+
+      <!-- Botão Teste Grátis / Fatura (Cyan Solid Button com Ícone) -->
+      <a 
+        href={`https://wa.me/${SITE_CONFIG.whatsapp.number}?text=${encodeURIComponent('Olá! Vim pelo site Cine 4K e quero solicitar meu Teste Grátis em 4K!')}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-1.5 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-xl text-xs font-black bg-cyan-400 text-slate-950 hover:bg-cyan-300 hover:shadow-lg hover:shadow-cyan-400/20 active:scale-95 transition-all"
+      >
+        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <rect x="2" y="5" width="20" height="14" rx="2" stroke-width="2" />
+          <line x1="2" y1="10" x2="22" y2="10" stroke-width="2" />
+        </svg>
+        <span>Teste Grátis</span>
+      </a>
+    </div>
+
+  </div>
+</header>

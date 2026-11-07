@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://cine4k.com.br/sitemap.xml

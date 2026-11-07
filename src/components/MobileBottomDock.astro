@@ -1,0 +1,120 @@
+---
+// src/components/MobileBottomDock.astro
+// Dock móvel inferior exatamente como no screenshot da Virtua
+---
+
+<nav 
+  id="mobileBottomDock"
+  aria-label="Navegação Principal Mobile"
+  class="fixed bottom-0 inset-x-0 z-40 bg-[#070e1e]/95 backdrop-blur-xl border-t border-slate-800/80 px-2 py-1.5 flex items-center justify-around sm:hidden transition-all duration-300"
+>
+  <!-- 1. Início -->
+  <button 
+    type="button"
+    data-dock-tab="inicio"
+    class="flex flex-col items-center justify-center gap-1 py-1 px-3 rounded-2xl text-cyan-400 font-bold transition-all cursor-pointer active:scale-95"
+  >
+    <svg class="w-5 h-5 fill-none stroke-current" stroke-width="2" viewBox="0 0 24 24">
+      <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" stroke-linecap="round" stroke-linejoin="round" />
+      <polyline points="9 22 9 12 15 12 15 22" stroke-linecap="round" stroke-linejoin="round" />
+    </svg>
+    <span class="text-[10px] tracking-tight">Início</span>
+  </button>
+
+  <!-- 2. Filmes -->
+  <button 
+    type="button"
+    data-dock-tab="filmes"
+    class="flex flex-col items-center justify-center gap-1 py-1 px-3 rounded-2xl text-slate-400 font-medium hover:text-cyan-400 transition-all cursor-pointer active:scale-95"
+  >
+    <svg class="w-5 h-5 fill-none stroke-current" stroke-width="2" viewBox="0 0 24 24">
+      <rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18" stroke-linecap="round" stroke-linejoin="round" />
+      <line x1="7" y1="2" x2="7" y2="22" stroke-linecap="round" stroke-linejoin="round" />
+      <line x1="17" y1="2" x2="17" y2="22" stroke-linecap="round" stroke-linejoin="round" />
+      <line x1="2" y1="12" x2="22" y2="12" stroke-linecap="round" stroke-linejoin="round" />
+    </svg>
+    <span class="text-[10px] tracking-tight">Filmes</span>
+  </button>
+
+  <!-- 3. Séries -->
+  <button 
+    type="button"
+    data-dock-tab="series"
+    class="flex flex-col items-center justify-center gap-1 py-1 px-3 rounded-2xl text-slate-400 font-medium hover:text-cyan-400 transition-all cursor-pointer active:scale-95"
+  >
+    <svg class="w-5 h-5 fill-none stroke-current" stroke-width="2" viewBox="0 0 24 24">
+      <path d="M4.93 19.07a10 10 0 0 1 0-14.14" stroke-linecap="round" stroke-linejoin="round" />
+      <path d="M7.76 16.24a6 6 0 0 1 0-8.48" stroke-linecap="round" stroke-linejoin="round" />
+      <circle cx="12" cy="12" r="2" stroke-linecap="round" stroke-linejoin="round" />
+      <path d="M16.24 7.76a6 6 0 0 1 0 8.48" stroke-linecap="round" stroke-linejoin="round" />
+      <path d="M19.07 4.93a10 10 0 0 1 0 14.14" stroke-linecap="round" stroke-linejoin="round" />
+    </svg>
+    <span class="text-[10px] tracking-tight">Séries</span>
+  </button>
+
+  <!-- 4. Canais -->
+  <button 
+    type="button"
+    data-dock-tab="canais"
+    class="flex flex-col items-center justify-center gap-1 py-1 px-3 rounded-2xl text-slate-400 font-medium hover:text-cyan-400 transition-all cursor-pointer active:scale-95"
+  >
+    <svg class="w-5 h-5 fill-none stroke-current" stroke-width="2" viewBox="0 0 24 24">
+      <rect x="2" y="7" width="20" height="15" rx="2" ry="2" stroke-linecap="round" stroke-linejoin="round" />
+      <polyline points="17 2 12 7 7 2" stroke-linecap="round" stroke-linejoin="round" />
+    </svg>
+    <span class="text-[10px] tracking-tight">Canais</span>
+  </button>
+
+  <!-- 5. Futebol -->
+  <button 
+    type="button"
+    data-dock-tab="futebol"
+    class="flex flex-col items-center justify-center gap-1 py-1 px-3 rounded-2xl text-slate-400 font-medium hover:text-cyan-400 transition-all cursor-pointer active:scale-95"
+  >
+    <svg class="w-5 h-5 fill-none stroke-current" stroke-width="2" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="10" stroke-linecap="round" stroke-linejoin="round" />
+      <polygon points="12 8 8 11 9.5 15 14.5 15 16 11 12 8" stroke-linecap="round" stroke-linejoin="round" />
+    </svg>
+    <span class="text-[10px] tracking-tight">Futebol</span>
+  </button>
+</nav>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const tabs = document.querySelectorAll('[data-dock-tab]');
+    
+    function setActiveTab(activeName: string) {
+      tabs.forEach(tab => {
+        const name = tab.getAttribute('data-dock-tab');
+        if (name === activeName) {
+          tab.classList.add('text-cyan-400', 'font-bold');
+          tab.classList.remove('text-slate-400', 'font-medium');
+        } else {
+          tab.classList.remove('text-cyan-400', 'font-bold');
+          tab.classList.add('text-slate-400', 'font-medium');
+        }
+      });
+    }
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const name = tab.getAttribute('data-dock-tab');
+        if (!name) return;
+        setActiveTab(name);
+
+        if (name === 'inicio') {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        } else if (name === 'filmes') {
+          const el = document.getElementById('lancamentos') || document.getElementById('acao');
+          if (el) el.scrollIntoView({ behavior: 'smooth' });
+        } else if (name === 'series') {
+          const el = document.getElementById('series');
+          if (el) el.scrollIntoView({ behavior: 'smooth' });
+        } else if (name === 'canais' || name === 'futebol') {
+          const el = document.getElementById('futebol-canais');
+          if (el) el.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+  });
+</script>

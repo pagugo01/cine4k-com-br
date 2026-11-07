@@ -1,0 +1,57 @@
+---
+// src/pages/termos-uso/index.astro
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { SITE_CONFIG } from '../../config/site';
+---
+
+<Layout 
+  title={`Termos de Uso — ${SITE_CONFIG.name}`}
+  description="Termos e Condições de Uso dos serviços e do catálogo interativo do Cine 4K."
+>
+  <Header />
+
+  <main class="max-w-4xl mx-auto px-4 sm:px-6 py-12 sm:py-20 text-slate-300">
+    <div class="mb-10 text-center sm:text-left">
+      <h1 class="text-3xl sm:text-4xl font-black text-white tracking-tight mb-3">
+        Termos de Uso
+      </h1>
+      <p class="text-xs sm:text-sm text-cyan-400 font-semibold">
+        Última atualização: Novembro de 2026
+      </p>
+    </div>
+
+    <div class="space-y-8 text-sm sm:text-base leading-relaxed bg-[#080d1a] border border-slate-800 p-6 sm:p-10 rounded-3xl">
+      <section>
+        <h2 class="text-xl font-bold text-white mb-2">1. Aceitação dos Termos</h2>
+        <p>
+          Ao acessar o site <strong>{SITE_CONFIG.domain}</strong>, você concorda em cumprir estes termos de serviço, todas as leis e regulamentos aplicáveis e concorda que é responsável pelo cumprimento de todas as leis locais cabíveis.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="text-xl font-bold text-white mb-2">2. Uso do Catálogo</h2>
+        <p>
+          O catálogo interativo Cine 4K exibe prévias, sinopses, avaliações públicas e trailers para fins de demonstração técnica e consulta prévia de títulos disponíveis na plataforma. A reprodução completa de conteúdos exige assinatura ativa previamente contratada.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="text-xl font-bold text-white mb-2">3. Planos e Acesso Simultâneo</h2>
+        <p>
+          Cada plano contratado estabelece um número máximo de telas simultâneas permitidas (de 2 a 3 telas). O compartilhamento de credenciais além dos limites contratados acarreta bloqueio automático de segurança pelo sistema.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="text-xl font-bold text-white mb-2">4. Cancelamento e Suporte</h2>
+        <p>
+          Não aplicamos multas rescisórias nem taxas de cancelamento. Você pode cancelar a renovação automática a qualquer momento solicitando diretamente à nossa central de atendimento via WhatsApp no número <strong>{SITE_CONFIG.whatsapp.formatted}</strong>.
+        </p>
+      </section>
+    </div>
+  </main>
+
+  <Footer />
+</Layout>
