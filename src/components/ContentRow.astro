@@ -12,7 +12,7 @@ const { category } = Astro.props;
 <section class="py-4 sm:py-6" id={category.id}>
   <div class="max-w-7xl mx-auto px-4 sm:px-6">
     
-    <!-- Cabeçalho da Linha (Conforme screenshot Virtua) -->
+    <!-- Cabeçalho da Linha (Conforme screenshot) -->
     <div class="flex items-center justify-between gap-2 mb-3 sm:mb-4">
       <h2 class="text-lg sm:text-xl md:text-2xl font-black text-white tracking-tight flex items-center gap-2">
         <span>{category.name}</span>
@@ -51,10 +51,11 @@ const { category } = Astro.props;
           <div 
             class="flex-shrink-0 w-[140px] sm:w-[170px] md:w-[190px] snap-start group/card cursor-pointer"
             data-catalog-item={JSON.stringify(item)}
+            data-item-title={item.title}
           >
             <div class="relative aspect-[2/3] w-full rounded-2xl overflow-hidden bg-slate-900 border border-slate-800 group-hover/card:border-cyan-400/80 transition-all duration-300 shadow-lg group-hover/card:shadow-cyan-500/20 group-hover/card:-translate-y-1">
               
-              <!-- Imagem da Capa -->
+              <!-- Imagem da Capa TMDb -->
               <img 
                 src={item.poster} 
                 alt={item.title}
@@ -63,7 +64,7 @@ const { category } = Astro.props;
                 onerror="this.onerror=null; this.src='/images/logo-512.png';"
               />
 
-              <!-- Overlay Gradiente Escuro no Rodapé (Exatamente como na Virtua) -->
+              <!-- Overlay Gradiente Escuro no Rodapé -->
               <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-90 group-hover/card:opacity-95 transition-opacity"></div>
 
               <!-- Rating Badge no Topo Direito -->
@@ -72,7 +73,7 @@ const { category } = Astro.props;
                 <span>{item.rating}</span>
               </div>
 
-              <!-- Tipo (4K / PPV) no Topo Esquerdo -->
+              <!-- Tipo no Topo Esquerdo -->
               <div class="absolute top-2 left-2 px-1.5 py-0.5 rounded-md bg-cyan-500/90 text-slate-950 text-[9px] font-black uppercase tracking-wider">
                 {item.type === 'football' ? 'AO VIVO' : item.type === 'series' ? 'SÉRIE' : '4K'}
               </div>
@@ -127,21 +128,72 @@ const { category } = Astro.props;
       });
     }
 
-    // Clique no Card para Abrir Modal de Detalhes
+    function bindCardClick(card) {
+      card.addEventListener('click', () => {
+        try {
+          const item = JSON.parse(card.getAttribute('data-catalog-item') || '{}');
+          if (window.openItemModal) {
+            window.openItemModal(item);
+          }
+        } catch (e) {
+          console.error('Erro ao ler item:', e);
+        }
+      });
+    }
+
+    // Clique inicial nos cards estáticos
     if (container) {
       const cards = container.querySelectorAll('[data-catalog-item]');
-      cards.forEach(card => {
-        card.addEventListener('click', () => {
-          try {
-            const item = JSON.parse(card.getAttribute('data-catalog-item') || '{}');
-            if (window.openItemModal) {
-              window.openItemModal(item);
+      cards.forEach(bindCardClick);
+
+      // Auto-Sync Dinâmico com TMDb Oficial via API própria (apenas categorias de filmes/séries)
+      if (['lancamentos', 'acao', 'animacao', 'anime', 'series'].includes(rowId)) {
+        fetch(`/api/tmdb.php?cat=${rowId}`)
+          .then(res => res.json())
+          .then(data => {
+            if (data.success && Array.isArray(data.items) && data.items.length > 0) {
+              const existingTitles = new Set(
+                Array.from(container.querySelectorAll('[data-item-title]'))
+                  .map(el => el.getAttribute('data-item-title')?.toLowerCase().trim())
+              );
+
+              // Insere novos filmes que ainda não constavam no HTML
+              data.items.forEach(newItem => {
+                if (!existingTitles.has(newItem.title.toLowerCase().trim())) {
+                  const cardDiv = document.createElement('div');
+                  cardDiv.className = 'flex-shrink-0 w-[140px] sm:w-[170px] md:w-[190px] snap-start group/card cursor-pointer';
+                  cardDiv.setAttribute('data-catalog-item', JSON.stringify(newItem));
+                  cardDiv.setAttribute('data-item-title', newItem.title);
+                  cardDiv.innerHTML = `
+                    <div class="relative aspect-[2/3] w-full rounded-2xl overflow-hidden bg-slate-900 border border-slate-800 group-hover/card:border-cyan-400/80 transition-all duration-300 shadow-lg group-hover/card:shadow-cyan-500/20 group-hover/card:-translate-y-1">
+                      <img src="${newItem.poster}" alt="${newItem.title}" class="w-full h-full object-cover object-center group-hover/card:scale-105 transition-transform duration-300" loading="lazy" onerror="this.onerror=null; this.src='/images/logo-512.png';" />
+                      <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-90 group-hover/card:opacity-95 transition-opacity"></div>
+                      <div class="absolute top-2 right-2 px-1.5 py-0.5 rounded-md bg-black/70 backdrop-blur-sm border border-white/10 text-[10px] font-bold text-amber-400 flex items-center gap-0.5">
+                        <span>★</span><span>${newItem.rating}</span>
+                      </div>
+                      <div class="absolute top-2 left-2 px-1.5 py-0.5 rounded-md bg-cyan-500/90 text-slate-950 text-[9px] font-black uppercase tracking-wider">
+                        ${newItem.type === 'series' ? 'SÉRIE' : '4K'}
+                      </div>
+                      <div class="absolute bottom-0 inset-x-0 p-2.5 sm:p-3 flex flex-col justify-end">
+                        <h3 class="text-xs sm:text-sm font-bold text-white line-clamp-2 leading-tight group-hover/card:text-cyan-300 transition-colors drop-shadow">
+                          ${newItem.title}
+                        </h3>
+                        <span class="text-[10px] text-slate-400 font-medium mt-0.5 line-clamp-1">
+                          ${newItem.year} • 4K HDR
+                        </span>
+                      </div>
+                    </div>
+                  `;
+                  bindCardClick(cardDiv);
+                  container.prepend(cardDiv);
+                }
+              });
             }
-          } catch (e) {
-            console.error('Erro ao ler item:', e);
-          }
-        });
-      });
+          })
+          .catch(() => {
+            // Se a requisição falhar (ex: offline), os cards estáticos já garantem 100% de funcionamento
+          });
+      }
     }
   });
 </script>

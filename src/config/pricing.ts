@@ -105,3 +105,4 @@ export const PRICING_PLANS: PricingPlan[] = [
     whatsappMessage: 'Olá! Quero a oferta do plano Anual por R$ 240 (50% OFF) no Cine 4K!'
   }
 ];
+

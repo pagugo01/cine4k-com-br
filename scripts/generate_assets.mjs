@@ -157,3 +157,4 @@ async function buildAssets() {
 }
 
 buildAssets().catch(console.error);
+

@@ -29,3 +29,4 @@ ${routes.map(r => `  <url>
 
 fs.writeFileSync(path.join(publicDir, 'sitemap.xml'), sitemapXml, 'utf-8');
 console.log('✅ sitemap.xml gerado com sucesso');
+

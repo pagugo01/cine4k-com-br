@@ -15,3 +15,4 @@ export const SITE_CONFIG = {
     defaultMessage: 'Olá! Vim pelo catálogo Cine 4K e quero meu teste grátis para assistir na TV!'
   }
 };
+
