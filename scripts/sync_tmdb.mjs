@@ -219,3 +219,4 @@ export const CATALOG_CATEGORIES: CatalogCategory[] = [
 }
 
 main().catch(console.error);
+
