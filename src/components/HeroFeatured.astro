@@ -3,15 +3,15 @@
 import { FEATURED_HERO } from '../data/catalog';
 ---
 
-<section class="relative w-full overflow-hidden bg-[#040711] pt-4 pb-8 sm:pt-6 sm:pb-12">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6">
-    <div class="relative w-full rounded-2xl sm:rounded-3xl overflow-hidden min-h-[460px] sm:min-h-[520px] flex items-end p-6 sm:p-10 border border-slate-800/80 shadow-2xl">
+<section class="relative w-full overflow-hidden bg-[#040711] pt-2 pb-4 sm:pt-6 sm:pb-8">
+  <div class="max-w-7xl mx-auto px-2.5 sm:px-6">
+    <div class="relative w-full rounded-2xl sm:rounded-3xl overflow-hidden min-h-[360px] sm:min-h-[500px] flex items-end p-4 sm:p-10 border border-slate-800/80 shadow-2xl">
       
       <!-- Backdrop Image -->
       <img 
         src={FEATURED_HERO.backdrop} 
         alt={FEATURED_HERO.title}
-        class="absolute inset-0 w-full h-full object-cover object-center filter brightness-[0.75] contrast-[1.1] scale-105"
+        class="absolute inset-0 w-full h-full object-cover object-center filter brightness-[0.7] contrast-[1.1]"
         loading="eager"
       />
 
@@ -20,45 +20,45 @@ import { FEATURED_HERO } from '../data/catalog';
       <div class="absolute inset-0 bg-gradient-to-r from-[#040711]/90 via-[#040711]/40 to-transparent"></div>
 
       <!-- Conteúdo do Hero -->
-      <div class="relative z-10 max-w-2xl flex flex-col items-start gap-4">
+      <div class="relative z-10 max-w-2xl flex flex-col items-start gap-2.5 sm:gap-4 w-full">
         
         <!-- Tag / Badge de Lançamento -->
-        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950/80 border border-cyan-500/40 text-cyan-300 text-xs font-bold tracking-wider uppercase backdrop-blur-sm">
-          <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
+        <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full bg-cyan-950/80 border border-cyan-500/40 text-cyan-300 text-[10px] sm:text-xs font-bold tracking-wider uppercase backdrop-blur-sm">
+          <span class="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse"></span>
           <span>Destaque da Semana • 4K HDR</span>
         </div>
 
-        <!-- Título Gigante -->
-        <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.1] drop-shadow-md">
+        <!-- Título -->
+        <h1 class="text-2xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-tight drop-shadow-md">
           {FEATURED_HERO.title}
         </h1>
 
         <!-- Descrição / Sinopse Curta -->
-        <p class="text-sm sm:text-base text-slate-300 font-medium line-clamp-2 sm:line-clamp-3 drop-shadow">
+        <p class="text-xs sm:text-base text-slate-300 font-medium line-clamp-2 sm:line-clamp-3 drop-shadow max-w-xl">
           {FEATURED_HERO.overview}
         </p>
 
-        <!-- Botões de Ação (Conforme Screenshot Virtua) -->
-        <div class="flex flex-wrap items-center gap-3 pt-2 w-full sm:w-auto">
+        <!-- Botões de Ação Lado a Lado (Exatamente como visto no Screenshot Virtua) -->
+        <div class="flex items-center gap-2 sm:gap-3 pt-1 w-full sm:w-auto">
           <!-- Botão Assistir (Cyan Pill) -->
           <button 
             type="button"
             data-hero-play
-            class="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2.5 px-6 py-3 rounded-full bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-black text-sm tracking-wide shadow-lg shadow-cyan-400/25 active:scale-95 transition-all cursor-pointer"
+            class="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 px-4 py-2.5 sm:px-6 sm:py-3 rounded-full bg-cyan-400 hover:bg-cyan-300 text-slate-950 font-black text-xs sm:text-sm tracking-wide shadow-lg shadow-cyan-400/25 active:scale-95 transition-all cursor-pointer"
           >
-            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+            <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-current" viewBox="0 0 24 24">
               <polygon points="5 3 19 12 5 21 5 3" />
             </svg>
             <span>Assistir</span>
           </button>
 
-          <!-- Botão Mais Informações (Dark Pill com Ícone de Info) -->
+          <!-- Botão Mais Informações (Dark Pill) -->
           <button 
             type="button"
             data-hero-info
-            class="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full bg-slate-900/80 hover:bg-slate-800 text-white font-bold text-sm border border-slate-700/80 backdrop-blur-sm active:scale-95 transition-all cursor-pointer"
+            class="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 px-3.5 py-2.5 sm:px-5 sm:py-3 rounded-full bg-slate-900/80 hover:bg-slate-800 text-white font-bold text-xs sm:text-sm border border-slate-700/80 backdrop-blur-sm active:scale-95 transition-all cursor-pointer"
           >
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <circle cx="12" cy="12" r="10" stroke-width="2" />
               <line x1="12" y1="16" x2="12" y2="12" stroke-width="2" stroke-linecap="round" />
               <line x1="12" y1="8" x2="12.01" y2="8" stroke-width="2" stroke-linecap="round" />
@@ -95,4 +95,3 @@ import { FEATURED_HERO } from '../data/catalog';
     }
   });
 </script>
-

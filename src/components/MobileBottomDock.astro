@@ -1,106 +1,132 @@
 ---
 // src/components/MobileBottomDock.astro
-// Dock móvel inferior exatamente como no screenshot da Virtua
+// Dock móvel inferior com ícones coloridos vibrantes (Ciano, Ouro, Roxo, Rosa, Verde) para chamar atenção
 ---
 
 <nav 
   id="mobileBottomDock"
   aria-label="Navegação Principal Mobile"
-  class="fixed bottom-0 inset-x-0 z-40 bg-[#070e1e]/95 backdrop-blur-xl border-t border-slate-800/80 px-2 py-1.5 flex items-center justify-around sm:hidden transition-all duration-300"
+  class="fixed bottom-0 inset-x-0 z-40 bg-[#060b18]/95 backdrop-blur-2xl border-t border-slate-800/90 px-1.5 py-1.5 flex items-center justify-around sm:hidden safe-bottom transition-all duration-300 shadow-2xl"
 >
-  <!-- 1. Início -->
+  <!-- 1. Início (Ciano Neon) -->
   <button 
     type="button"
     data-dock-tab="inicio"
-    class="flex flex-col items-center justify-center gap-1 py-1 px-3 rounded-2xl text-cyan-400 font-bold transition-all cursor-pointer active:scale-95"
+    class="dock-item flex flex-col items-center justify-center py-1 px-3 rounded-2xl transition-all cursor-pointer bg-cyan-400 text-slate-950 font-black shadow-lg shadow-cyan-400/30 active:scale-95 min-w-[58px]"
   >
-    <svg class="w-5 h-5 fill-none stroke-current" stroke-width="2" viewBox="0 0 24 24">
+    <svg class="w-5 h-5 fill-none stroke-current" stroke-width="2.3" viewBox="0 0 24 24">
       <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" stroke-linecap="round" stroke-linejoin="round" />
       <polyline points="9 22 9 12 15 12 15 22" stroke-linecap="round" stroke-linejoin="round" />
     </svg>
-    <span class="text-[10px] tracking-tight">Início</span>
+    <span class="text-[10px] tracking-tight leading-none mt-0.5 font-bold">Início</span>
   </button>
 
-  <!-- 2. Filmes -->
+  <!-- 2. Filmes (Amarelo Ouro / Cinema) -->
   <button 
     type="button"
     data-dock-tab="filmes"
-    class="flex flex-col items-center justify-center gap-1 py-1 px-3 rounded-2xl text-slate-400 font-medium hover:text-cyan-400 transition-all cursor-pointer active:scale-95"
+    class="dock-item flex flex-col items-center justify-center py-1 px-2.5 rounded-2xl text-amber-400 transition-all cursor-pointer hover:scale-105 active:scale-95 min-w-[54px]"
   >
-    <svg class="w-5 h-5 fill-none stroke-current" stroke-width="2" viewBox="0 0 24 24">
+    <svg class="w-5 h-5 fill-none stroke-amber-400 filter drop-shadow-[0_0_6px_rgba(251,191,36,0.6)]" stroke-width="2.3" viewBox="0 0 24 24">
       <rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18" stroke-linecap="round" stroke-linejoin="round" />
       <line x1="7" y1="2" x2="7" y2="22" stroke-linecap="round" stroke-linejoin="round" />
       <line x1="17" y1="2" x2="17" y2="22" stroke-linecap="round" stroke-linejoin="round" />
       <line x1="2" y1="12" x2="22" y2="12" stroke-linecap="round" stroke-linejoin="round" />
     </svg>
-    <span class="text-[10px] tracking-tight">Filmes</span>
+    <span class="text-[10px] text-amber-300 font-bold tracking-tight leading-none mt-0.5">Filmes</span>
   </button>
 
-  <!-- 3. Séries -->
+  <!-- 3. Séries (Roxo / Violeta Elétrico) -->
   <button 
     type="button"
     data-dock-tab="series"
-    class="flex flex-col items-center justify-center gap-1 py-1 px-3 rounded-2xl text-slate-400 font-medium hover:text-cyan-400 transition-all cursor-pointer active:scale-95"
+    class="dock-item flex flex-col items-center justify-center py-1 px-2.5 rounded-2xl text-purple-400 transition-all cursor-pointer hover:scale-105 active:scale-95 min-w-[54px]"
   >
-    <svg class="w-5 h-5 fill-none stroke-current" stroke-width="2" viewBox="0 0 24 24">
+    <svg class="w-5 h-5 fill-none stroke-purple-400 filter drop-shadow-[0_0_6px_rgba(168,85,247,0.6)]" stroke-width="2.3" viewBox="0 0 24 24">
       <path d="M4.93 19.07a10 10 0 0 1 0-14.14" stroke-linecap="round" stroke-linejoin="round" />
       <path d="M7.76 16.24a6 6 0 0 1 0-8.48" stroke-linecap="round" stroke-linejoin="round" />
-      <circle cx="12" cy="12" r="2" stroke-linecap="round" stroke-linejoin="round" />
+      <circle cx="12" cy="12" r="2" stroke-linecap="round" stroke-linejoin="round" fill="currentColor" />
       <path d="M16.24 7.76a6 6 0 0 1 0 8.48" stroke-linecap="round" stroke-linejoin="round" />
       <path d="M19.07 4.93a10 10 0 0 1 0 14.14" stroke-linecap="round" stroke-linejoin="round" />
     </svg>
-    <span class="text-[10px] tracking-tight">Séries</span>
+    <span class="text-[10px] text-purple-300 font-bold tracking-tight leading-none mt-0.5">Séries</span>
   </button>
 
-  <!-- 4. Canais -->
+  <!-- 4. Canais (Rosa Neon TV) -->
   <button 
     type="button"
     data-dock-tab="canais"
-    class="flex flex-col items-center justify-center gap-1 py-1 px-3 rounded-2xl text-slate-400 font-medium hover:text-cyan-400 transition-all cursor-pointer active:scale-95"
+    class="dock-item flex flex-col items-center justify-center py-1 px-2.5 rounded-2xl text-pink-400 transition-all cursor-pointer hover:scale-105 active:scale-95 min-w-[54px]"
   >
-    <svg class="w-5 h-5 fill-none stroke-current" stroke-width="2" viewBox="0 0 24 24">
+    <svg class="w-5 h-5 fill-none stroke-pink-400 filter drop-shadow-[0_0_6px_rgba(244,63,94,0.6)]" stroke-width="2.3" viewBox="0 0 24 24">
       <rect x="2" y="7" width="20" height="15" rx="2" ry="2" stroke-linecap="round" stroke-linejoin="round" />
       <polyline points="17 2 12 7 7 2" stroke-linecap="round" stroke-linejoin="round" />
     </svg>
-    <span class="text-[10px] tracking-tight">Canais</span>
+    <span class="text-[10px] text-pink-300 font-bold tracking-tight leading-none mt-0.5">Canais</span>
   </button>
 
-  <!-- 5. Futebol -->
+  <!-- 5. Futebol (Verde Gramado Neon) -->
   <button 
     type="button"
     data-dock-tab="futebol"
-    class="flex flex-col items-center justify-center gap-1 py-1 px-3 rounded-2xl text-slate-400 font-medium hover:text-cyan-400 transition-all cursor-pointer active:scale-95"
+    class="dock-item flex flex-col items-center justify-center py-1 px-2.5 rounded-2xl text-emerald-400 transition-all cursor-pointer hover:scale-105 active:scale-95 min-w-[54px]"
   >
-    <svg class="w-5 h-5 fill-none stroke-current" stroke-width="2" viewBox="0 0 24 24">
+    <svg class="w-5 h-5 fill-none stroke-emerald-400 filter drop-shadow-[0_0_6px_rgba(52,211,153,0.6)]" stroke-width="2.3" viewBox="0 0 24 24">
       <circle cx="12" cy="12" r="10" stroke-linecap="round" stroke-linejoin="round" />
-      <polygon points="12 8 8 11 9.5 15 14.5 15 16 11 12 8" stroke-linecap="round" stroke-linejoin="round" />
+      <polygon points="12 8 8 11 9.5 15 14.5 15 16 11 12 8" stroke-linecap="round" stroke-linejoin="round" fill="currentColor" fill-opacity="0.3" />
     </svg>
-    <span class="text-[10px] tracking-tight">Futebol</span>
+    <span class="text-[10px] text-emerald-300 font-bold tracking-tight leading-none mt-0.5">Futebol</span>
   </button>
 </nav>
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
-    const tabs = document.querySelectorAll('[data-dock-tab]');
+    const tabs = document.querySelectorAll('.dock-item');
     
-    function setActiveTab(activeName: string) {
+    // Configurações de cores originais de cada aba
+    const tabStyles: Record<string, { stroke: string, text: string, shadow: string }> = {
+      inicio: { stroke: 'stroke-cyan-400', text: 'text-cyan-300', shadow: 'rgba(34,211,238,0.6)' },
+      filmes: { stroke: 'stroke-amber-400', text: 'text-amber-300', shadow: 'rgba(251,191,36,0.6)' },
+      series: { stroke: 'stroke-purple-400', text: 'text-purple-300', shadow: 'rgba(168,85,247,0.6)' },
+      canais: { stroke: 'stroke-pink-400', text: 'text-pink-300', shadow: 'rgba(244,63,94,0.6)' },
+      futebol: { stroke: 'stroke-emerald-400', text: 'text-emerald-300', shadow: 'rgba(52,211,153,0.6)' }
+    };
+
+    function setActiveTab(activeTab: Element) {
       tabs.forEach(tab => {
-        const name = tab.getAttribute('data-dock-tab');
-        if (name === activeName) {
-          tab.classList.add('text-cyan-400', 'font-bold');
-          tab.classList.remove('text-slate-400', 'font-medium');
-        } else {
-          tab.classList.remove('text-cyan-400', 'font-bold');
-          tab.classList.add('text-slate-400', 'font-medium');
+        const name = tab.getAttribute('data-dock-tab') || 'inicio';
+        const style = tabStyles[name];
+        
+        // Remove estado de pílula ativa
+        tab.classList.remove('bg-cyan-400', 'text-slate-950', 'shadow-lg', 'shadow-cyan-400/30');
+        
+        // Restaura cor vibrante original do ícone e do texto
+        const svg = tab.querySelector('svg');
+        const span = tab.querySelector('span');
+        if (svg) {
+          svg.classList.remove('stroke-slate-950');
+        }
+        if (span) {
+          span.classList.remove('text-slate-950');
+          span.classList.add(style.text);
         }
       });
+
+      // Ativa a pílula ciano na aba clicada
+      activeTab.classList.add('bg-cyan-400', 'text-slate-950', 'shadow-lg', 'shadow-cyan-400/30');
+      const activeSvg = activeTab.querySelector('svg');
+      const activeSpan = activeTab.querySelector('span');
+      if (activeSvg) activeSvg.classList.add('stroke-slate-950');
+      if (activeSpan) {
+        activeSpan.className = 'text-[10px] tracking-tight leading-none mt-0.5 font-black text-slate-950';
+      }
     }
 
     tabs.forEach(tab => {
       tab.addEventListener('click', () => {
         const name = tab.getAttribute('data-dock-tab');
         if (!name) return;
-        setActiveTab(name);
+        setActiveTab(tab);
 
         if (name === 'inicio') {
           window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -118,4 +144,3 @@
     });
   });
 </script>
-
