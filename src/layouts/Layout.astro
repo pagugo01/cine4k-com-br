@@ -32,13 +32,109 @@ const jsonLd = {
       "@id": `${SITE_CONFIG.url}/#organization`,
       "name": SITE_CONFIG.name,
       "url": SITE_CONFIG.url,
-      "logo": `${SITE_CONFIG.url}/public/images/logo-512.png`,
+      "logo": `${SITE_CONFIG.url}/images/logo-512.png`,
       "contactPoint": {
         "@type": "ContactPoint",
         "telephone": "+55-51-99716-477",
         "contactType": "customer service",
         "availableLanguage": "Portuguese"
       }
+    },
+    {
+      "@type": "Product",
+      "@id": `${SITE_CONFIG.url}/#product`,
+      "name": "Assinatura Catálogo Cine 4K Ultra HD",
+      "description": "Acesso completo a mais de 100 mil conteúdos em 4K nativo, lançamentos de cinema, séries e canais ao vivo com suporte via WhatsApp.",
+      "brand": {
+        "@type": "Brand",
+        "name": "Cine 4K"
+      },
+      "image": `${SITE_CONFIG.url}/images/logo-512.png`,
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "bestRating": "5",
+        "ratingCount": "1840"
+      },
+      "offers": {
+        "@type": "AggregateOffer",
+        "priceCurrency": "BRL",
+        "lowPrice": "30.00",
+        "highPrice": "240.00",
+        "offerCount": "4",
+        "offers": [
+          {
+            "@type": "Offer",
+            "name": "Plano Mensal Cine 4K (2 Telas)",
+            "price": "30.00",
+            "priceCurrency": "BRL",
+            "availability": "https://schema.org/InStock",
+            "url": `${SITE_CONFIG.url}/ir/plano-mensal/`
+          },
+          {
+            "@type": "Offer",
+            "name": "Plano Trimestral Cine 4K (2 Telas)",
+            "price": "70.00",
+            "priceCurrency": "BRL",
+            "availability": "https://schema.org/InStock",
+            "url": `${SITE_CONFIG.url}/ir/plano-trimestral/`
+          },
+          {
+            "@type": "Offer",
+            "name": "Plano Semestral Cine 4K (3 Telas)",
+            "price": "130.00",
+            "priceCurrency": "BRL",
+            "availability": "https://schema.org/InStock",
+            "url": `${SITE_CONFIG.url}/ir/plano-semestral/`
+          },
+          {
+            "@type": "Offer",
+            "name": "Plano Anual Cine 4K (3 Telas)",
+            "price": "240.00",
+            "priceCurrency": "BRL",
+            "availability": "https://schema.org/InStock",
+            "url": `${SITE_CONFIG.url}/ir/plano-anual/`
+          }
+        ]
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": `${SITE_CONFIG.url}/#faq`,
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "O que é o Cine 4K e como funciona?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "O Cine 4K é a plataforma mais completa de entretenimento sob demanda e canais ao vivo em ultra definição 4K. Você tem acesso a mais de 100 mil conteúdos em Smart TV, TV Box ou celular, sem necessidade de antenas."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Em quais aparelhos posso assistir ao Cine 4K?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Smart TVs Samsung, LG, Roku, Android TV, Fire TV Stick, TV Box, Celulares Android, iPhone e computadores."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Como solicito meu teste grátis no Cine 4K?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Basta clicar em Teste Grátis no site e chamar no WhatsApp +55 (51) 99716-477. A liberação ocorre em menos de 2 minutos."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Quantas telas posso usar ao mesmo tempo?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Nossos planos liberam de 2 até 3 telas simultâneas na mesma residência."
+          }
+        }
+      ]
     }
   ]
 };
@@ -84,7 +180,7 @@ const jsonLd = {
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
 
-    <!-- JSON-LD Structured Data -->
+    <!-- JSON-LD Structured Data com Rich Snippets -->
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 
     <!-- Google Fonts Inter -->
@@ -111,7 +207,6 @@ const jsonLd = {
         -webkit-text-size-adjust: 100%;
         -webkit-tap-highlight-color: transparent;
       }
-      /* Prevenção total de vazamento horizontal em celulares */
       body {
         position: relative;
         min-height: 100vh;
@@ -139,7 +234,6 @@ const jsonLd = {
         scrollbar-width: none;
         -webkit-overflow-scrolling: touch;
       }
-      /* Suporte a entalhe do iPhone */
       .safe-bottom {
         padding-bottom: max(0.5rem, env(safe-area-inset-bottom));
       }
